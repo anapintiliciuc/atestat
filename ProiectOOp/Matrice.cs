@@ -69,6 +69,14 @@ namespace ProiectOOp
             return new Matrice(rez);
         }
 
+        //public static Matrice operator=(Matrice a, Matrice b)
+        //{
+        //    for (int i = 0; i < a.n; i++)
+        //        for (int j = 0; j < a.m; j++)
+        //            a.mat[i, j] = b.mat[i, j];
+        //    return new Matrice(a);
+        //}
+
         //inmultire
 
         public static Matrice operator*(int x, Matrice a)
@@ -97,10 +105,10 @@ namespace ProiectOOp
                 if(put % 2 != 0)
                 {
                     put--;
-                    rez = rez * a;
+                    rez = new Matrice(rez * a);
                 }
                 put /= 2;
-                a = a * a;
+                a = new Matrice( a * a );
             }
             return new Matrice(rez);
         }
@@ -256,6 +264,17 @@ namespace ProiectOOp
         }
 
         //fibonacci
+
+        public int fibonacci(int put)
+        {
+            Matrice m = new Matrice(2, 2);
+            m.mat[0, 0] = 1;
+            m.mat[0, 1] = 1;
+            m.mat[1, 0] = 1;
+            m.mat[1, 1] = 1;
+            m = new Matrice(m ^ put);
+            return m.mat[0, 0];
+        }
 
     }
 }
