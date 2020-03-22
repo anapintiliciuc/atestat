@@ -29,6 +29,8 @@ namespace ProiectOOp
             int loc1 = unde.X + 80;
             int loc2 = unde.Y;
             char lit = 'A';
+            if (nrDeOrdine == 2)
+                lit = 'B';
 
             for (int i = 1; i <= dim1; i++)
             {
@@ -38,7 +40,7 @@ namespace ProiectOOp
                 for (int j = 1; j <= dim2; j++)
                 {
                     box[i, j] = new TextBox();
-                    //box[i, j].Name = lit + Convert.ToString(i);
+                    box[i, j].Name = lit + Convert.ToString(i*dim1+j);
                     //MessageBox.Show(loc1.ToString());
                     loc1 = loc1 + 35;
                     box[i, j].Width = 30;
@@ -134,6 +136,27 @@ namespace ProiectOOp
 
         }
 
+        private void gen_n_putere()
+        {
+            n_text.Text = "n = ";
+            n_text.AutoSize = true;
+            m_text.Text = "putere = ";
+            m_text.AutoSize = true;
+            n_text.Location = new Point(0, 4);
+            n_tb.Location = new Point(30, 0);
+            m_text.Location = new Point(0, 54);
+            m_tb.Location = new Point(50, 50);
+
+            this.panel2.Controls.Add(m_text);
+            this.panel2.Controls.Add(n_text);
+            this.panel2.Controls.Add(n_tb);
+            this.panel2.Controls.Add(m_tb);
+
+            btn.Text = "Genereaza";
+            btn.Location = new Point(150, 25);
+            this.panel2.Controls.Add(btn);
+            btn.Click += new EventHandler(this.btn_click);
+        }
 
         int n, m, p;
         int butGenereaza;
@@ -320,21 +343,16 @@ namespace ProiectOOp
                 iaN(n_tb);
             }
 
-            if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
+            /*if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
             {
                 iaN(n_tb);
-            }
+            }*/
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
 
             }
-
-            if (comboBoxChoice.Text == "Rezolvarea unui sistem de ecuatii")
-            {
-
-            }
-
+            
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
 
@@ -362,7 +380,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                    iaN(n_tb);
+                    iaNM(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -379,20 +397,15 @@ namespace ProiectOOp
             {
                     iaN(n_tb);
             }
-
+            /*
             if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
             {
                     iaN(n_tb);
             }
-
+            */
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
-
-            }
-
-            if (comboBoxChoice.Text == "Rezolvarea unui sistem de ecuatii")
-            {
-
+                iaNM(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
@@ -441,8 +454,9 @@ namespace ProiectOOp
             if(comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
                 n_tb.Text = "";
+                m_tb.Text = "";
                 panel2.Controls.Clear();
-                gen_n();
+                gen_n_putere();
             }
 
             if(comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -467,25 +481,20 @@ namespace ProiectOOp
                 gen_n();
             }
 
-            if(comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
+           /* if(comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
             {
                 n_tb.Text = "";
                 panel2.Controls.Clear();
                 gen_n();
 
-            }
+            }*/
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
                 panel2.Controls.Clear();
-
+                gen_n_m();
             }
 
-            if (comboBoxChoice.Text == "Rezolvarea unui sistem de ecuatii")
-            {
-                panel2.Controls.Clear();
-
-            }
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {

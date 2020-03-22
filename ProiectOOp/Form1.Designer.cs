@@ -50,9 +50,7 @@
             "Scoaterea unui factor comun dintr-o matrice",
             "Determinantul unei matrice",
             "Urma unei matrice",
-            "Factorul comun dintr-un determinant de pe o anumita linie/coloana",
             "Rangul unei matrice",
-            "Rezolvarea unui sistem de ecuatii",
             "Al k-lea element Fibonacci"});
             this.comboBoxChoice.Location = new System.Drawing.Point(276, 26);
             this.comboBoxChoice.Name = "comboBoxChoice";
