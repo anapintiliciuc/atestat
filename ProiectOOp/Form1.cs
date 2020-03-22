@@ -20,7 +20,6 @@ namespace ProiectOOp
         private void Form1_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Primul commit");
-            MessageBox.Show("Primul commit");
         }
     }
 }
