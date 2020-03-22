@@ -91,10 +91,17 @@ namespace ProiectOOp
 
         public static Matrice operator^(Matrice a, int put)
         {
-            Matrice rez = new Matrice(a.n, a.m);
-
-
-
+            Matrice rez = new Matrice(a);
+            while(put != 0)
+            {
+                if(put % 2 != 0)
+                {
+                    put--;
+                    rez = rez * a;
+                }
+                put /= 2;
+                a = a * a;
+            }
             return new Matrice(rez);
         }
 
@@ -196,11 +203,7 @@ namespace ProiectOOp
                 for (int j = 0; j < at.m; j++)
                     at.mat[i, j] = a.mat[j, i];
             return new Matrice(at);
-        }
-
-        //inversa
-        
-        
+        }        
 
         //rangul
 
@@ -251,6 +254,8 @@ namespace ProiectOOp
 
             return rang;
         }
+
+        //fibonacci
 
     }
 }
