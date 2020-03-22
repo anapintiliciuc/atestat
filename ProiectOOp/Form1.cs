@@ -325,7 +325,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                iaN(n_tb);
+                iaNM(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
