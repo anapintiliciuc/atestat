@@ -24,6 +24,8 @@ namespace ProiectOOp
 
         TextBox[,] box;
         Label[,] labelsRez;
+        Label labelPtRez;
+
         private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             box = new TextBox[dim1+1, dim2+1];
@@ -76,6 +78,19 @@ namespace ProiectOOp
             }
         }
 
+        private void gen_boxDeRez(Point unde)
+        {
+            labelPtRez = new Label();
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+            labelPtRez.Name = 'C' + Convert.ToString(1);
+            loc1 = loc1 + 35;
+            labelPtRez.Width = 30;
+            labelPtRez.Height = 30;
+            labelPtRez.Location = new Point(loc1, loc2 + 30);
+            this.panel2.Controls.Add(labelPtRez);
+        }
+
         TextBox n_tb = new TextBox();
         TextBox m_tb = new TextBox();
         TextBox p_tb = new TextBox();
@@ -97,6 +112,21 @@ namespace ProiectOOp
         private void gen_n()
         {
             n_text.Text = "n = ";
+            n_text.AutoSize = true;
+            n_text.Location = new Point(0, 5);
+            n_tb.Location = new Point(30, 1);
+
+            this.panel2.Controls.Add(n_text);
+            this.panel2.Controls.Add(n_tb);
+
+            btn.Text = "Genereaza";
+            btn.Location = new Point(150, 0);
+            this.panel2.Controls.Add(btn);
+            btn.Click += new EventHandler(this.btn_click);
+        }
+        private void gen_k()
+        {
+            n_text.Text = "k = ";
             n_text.AutoSize = true;
             n_text.Location = new Point(0, 5);
             n_tb.Location = new Point(30, 1);
@@ -183,7 +213,7 @@ namespace ProiectOOp
             btn.Click += new EventHandler(this.btn_click);
         }
 
-        int n, m, p, putere;
+        int n, m, p, k, putere;
         int butGenereaza;
         Point aici1, aici2;
         private void iaN(TextBox x)
@@ -206,6 +236,28 @@ namespace ProiectOOp
             }
 
             gen_mat(n, n, 1, aici1);
+
+            genButtonCalc();
+            //gen_mat(n, n, 2);
+        }
+        private void iaK(TextBox x)
+        {
+            try
+            {
+
+               k = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+            if (k > 1000000000 || k < 0)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
 
             genButtonCalc();
             //gen_mat(n, n, 2);
@@ -275,7 +327,7 @@ namespace ProiectOOp
             try
             {
 
-               m = int.Parse(y.Text);
+               putere = int.Parse(y.Text);
             }
             catch
             {
@@ -374,7 +426,7 @@ namespace ProiectOOp
         {
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
-                iaDinMat(box, n, m, mat1);
+                //iaDinMat(box, n, m, mat1);
             }
 
             if (comboBoxChoice.Text == "Scadere dintre 2 matrice")
@@ -475,7 +527,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
-
+                iaK(n_tb);
             }
 
         }
@@ -556,6 +608,8 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
+                n_tb.Text = "";
+                m_tb.Text = "";
                 panel2.Controls.Clear();
                 gen_n_m();
             }
@@ -563,8 +617,9 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
+                n_tb.Text = "";
                 panel2.Controls.Clear();
-
+                gen_k();
             }
 
         }
