@@ -23,6 +23,7 @@ namespace ProiectOOp
         }
 
         TextBox[,] box;
+        Label[,] labelsRez;
         private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             box = new TextBox[dim1+1, dim2+1];
@@ -46,6 +47,30 @@ namespace ProiectOOp
                     box[i, j].Width = 30;
                     box[i, j].Height = 30;
                     box[i, j].Location = new Point(loc1, loc2 + 30);
+                    this.panel2.Controls.Add(box[i, j]);
+                }
+            }
+        }
+        
+        private void gen_boxDeRez(int dim1, int dim2, Point unde)
+        {
+            labelsRez = new Label[dim1+1, dim2+1];
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+
+            for (int i = 0; i < dim1; i++)
+            {
+                loc1 = unde.X + 10;
+                loc2 = loc2 + 30;
+
+                for (int j = 0; j < dim2; j++)
+                {
+                    labelsRez[i, j] = new Label();
+                    labelsRez[i, j].Name = 'C' + Convert.ToString(i*dim1+j);
+                    loc1 = loc1 + 35;
+                    labelsRez[i, j].Width = 30;
+                    labelsRez[i, j].Height = 30;
+                    labelsRez[i, j].Location = new Point(loc1, loc2 + 30);
                     this.panel2.Controls.Add(box[i, j]);
                 }
             }
@@ -158,7 +183,7 @@ namespace ProiectOOp
             btn.Click += new EventHandler(this.btn_click);
         }
 
-        int n, m, p;
+        int n, m, p, putere;
         int butGenereaza;
         Point aici1, aici2;
         private void iaN(TextBox x)
@@ -224,6 +249,46 @@ namespace ProiectOOp
             }
             gen_mat(n, m, 1, aici1);
             gen_mat(n, m, 2, aici2);
+
+            genButtonCalc();
+        }
+        private void iaNPutere(TextBox x, TextBox y)
+        {
+            try
+            {
+
+               n = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (n > 15 || n < 1)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
+
+            try
+            {
+
+               m = int.Parse(y.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. putere!");
+                butGenereaza = 0;
+                return;
+            }
+            if (m < 1 || m > 100)
+            {
+                MessageBox.Show("m nu respecta limitele");
+                return;
+            }
+            gen_mat(n, n, 1, aici1);
 
             genButtonCalc();
         }
@@ -325,7 +390,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                iaNM(n_tb, m_tb);
+                iaNPutere(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -380,7 +445,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                    iaNM(n_tb, m_tb);
+                    iaNPutere(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
