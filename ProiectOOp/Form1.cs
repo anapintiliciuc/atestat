@@ -22,7 +22,7 @@ namespace ProiectOOp
 
         }
 
-        TextBox[,] box;
+        TextBox[,] box1, box2, box;
         private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             box = new TextBox[dim1+1, dim2+1];
@@ -305,42 +305,54 @@ namespace ProiectOOp
                 }
             }
         }
+
+        
         private void btnCalc_click(object sender, EventArgs e)
         {
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
-                iaDinMat(box, n, m, mat1);
+                //iaDinMat(box1, n, m, mat1);
+                //iaDinMat(box2, n, m, mat2);
+                Matrice a = new Matrice(box1, n, m);
+                Matrice b = new Matrice(box2, n, m);
+                Matrice rez = new Matrice(a + b);
             }
 
             if (comboBoxChoice.Text == "Scadere dintre 2 matrice")
             {
-                iaNM(n_tb, m_tb);
+                Matrice a = new Matrice(box1, n, m);
+                Matrice b = new Matrice(box2, n, m);
+                Matrice rez = new Matrice(a - b);
             }
 
             if (comboBoxChoice.Text == "Inmultirea a 2 matrice")
             {
-                iaNMP(n_tb, m_tb, p_tb);
-
+                Matrice a = new Matrice(box1, n, m);
+                Matrice b = new Matrice(box2, m, p);
+                Matrice rez = new Matrice(a * b);
             }
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                iaNM(n_tb, m_tb);
+
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
             {
-                iaNM(n_tb, m_tb);
+                Matrice a = new Matrice(box1, n, m);
+                int factor = a.factorComunMatrice();
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
             {
-                iaN(n_tb);
+                Matrice a = new Matrice(box1, n, n);
+                int determinant = a.determinant();
             }
 
             if (comboBoxChoice.Text == "Urma unei matrice")
             {
-                iaN(n_tb);
+                Matrice a = new Matrice(box1, n, n);
+                int urma = a.urmaMatrice();
             }
 
             /*if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
@@ -350,12 +362,13 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
-
+                Matrice a = new Matrice(box1, n, m);
+                int rang = a.rangulMatricei();
             }
             
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
-
+                
             }
         }
         private void btn_click(object sender, EventArgs e)

@@ -121,13 +121,13 @@ namespace ProiectOOp
                 return x;
             return cmmdc(y, x % y);
         }
-        public int factorComunMatrice(Matrice a)
+        public int factorComunMatrice()
         {
-            int factor = a.mat[0, 0];
+            int factor = mat[0, 0];
 
-            for (int i = 0; i < a.n; i++)
-                for (int j = 0; j < a.m; j++)
-                    factor = cmmdc(factor, a.mat[i, j]);
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < m; j++)
+                    factor = cmmdc(factor, mat[i, j]);
 
             return factor;
         }
@@ -165,19 +165,19 @@ namespace ProiectOOp
 
         //determinant
 
-        public int determinant(Matrice a)
+        public int determinant()
         {
-            return det(a.n, a.mat);               
+            return det(n, mat);               
         }
 
         //factor comun din determinant
 
-        public int factorComunDeterminantLinie(Matrice a, int lin)
+        public int factorComunDeterminantLinie(int lin)
         {
-            int factor = a.mat[lin, 0];
+            int factor = mat[lin, 0];
 
-            for (int i = 1; i < a.n; i++)
-                factor = cmmdc(factor, a.mat[lin, i]);
+            for (int i = 1; i < n; i++)
+                factor = cmmdc(factor, mat[lin, i]);
 
             return factor;
         }
@@ -194,57 +194,57 @@ namespace ProiectOOp
 
         //urma
         
-        public int urmaMatrice(Matrice a)
+        public int urmaMatrice()
         {
             int s = 0;
-            for (int i = 0; i < a.n; i++)
-                s += a.mat[i, i];
+            for (int i = 0; i < n; i++)
+                s += mat[i, i];
             return s;
         }
 
         //transpusa
 
-        public Matrice transpusa(Matrice a)
+        public Matrice transpusa()
         {
-            Matrice at = new Matrice(a.m, a.n);
+            Matrice at = new Matrice(m, n);
             for (int i = 0; i < at.n; i++)
                 for (int j = 0; j < at.m; j++)
-                    at.mat[i, j] = a.mat[j, i];
+                    at.mat[i, j] = mat[j, i];
             return new Matrice(at);
         }        
 
         //rangul
 
-        public int rangulMatricei(Matrice a)
+        public int rangulMatricei()
         {
-            int rang = a.m;
+            int rang = m;
 
             for(int i=0; i<rang; i++)
             {
-                if(a.mat[i, i]!=0)
+                if(mat[i, i]!=0)
                 {
-                    for(int j=0; j<a.n; j++)
+                    for(int j=0; j<n; j++)
                     {
                         if(j!=i)
                         {
-                            int mult = a.mat[j, i] / a.mat[i, i];
+                            int mult = mat[j, i] / mat[i, i];
                             for (int k = 0; k < rang; k++)
-                                a.mat[j, k] -= mult * a.mat[i, k];
+                                mat[j, k] -= mult * mat[i, k];
                         }
                     }
                 }
                 else
                 {
                     bool reduce = true;
-                    for(int j=i+1; j<a.n; j++)
+                    for(int j=i+1; j<n; j++)
                     {
-                        if(a.mat[j, i]!=0)
+                        if(mat[j, i]!=0)
                         {
                             for(int k=0; k<rang; k++)
                             {
-                                int aux = a.mat[i, k];
-                                a.mat[i, k] = a.mat[j, k];
-                                a.mat[j, k] = aux;
+                                int aux = mat[i, k];
+                                mat[i, k] = mat[j, k];
+                                mat[j, k] = aux;
                             }
                             reduce = false;
                             break;
@@ -253,7 +253,7 @@ namespace ProiectOOp
                     if(reduce)
                     {
                         rang--;
-                        for (int j = 0; j < a.n; j++)
+                        for (int j = 0; j < n; j++)
                             mat[j, i] = mat[j, rang];
                     }
                     i--;
