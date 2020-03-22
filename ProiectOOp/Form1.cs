@@ -22,7 +22,9 @@ namespace ProiectOOp
 
         }
 
-        TextBox[,] box;
+        TextBox[,] box, box1, box2;
+        Label[,] labelsRez;
+        Label labelPtRez;
         private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             box = new TextBox[dim1+1, dim2+1];
