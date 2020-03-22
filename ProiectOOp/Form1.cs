@@ -30,12 +30,12 @@ namespace ProiectOOp
             int loc2 = unde.Y;
             char lit = 'A';
 
-            for (int i = 1; i <= dim1; i++)
+            for (int i = 0; i < dim1; i++)
             {
                 loc1 = unde.X + 10;
                 loc2 = loc2 + 30;
 
-                for (int j = 1; j <= dim2; j++)
+                for (int j = 0; j < dim2; j++)
                 {
                     box[i, j] = new TextBox();
                     //box[i, j].Name = lit + Convert.ToString(i);
@@ -268,9 +268,9 @@ namespace ProiectOOp
         int[,] mat2;
         private void iaDinMat(TextBox[,] boxybox, int dim1, int dim2, int[,] mat)
         {
-            for(int i=1; i<=dim1; i++)
+            for(int i=0; i<dim1; i++)
             {
-                for(int j=1; j<=dim2; j++)
+                for(int j=0; j<dim2; j++)
                 {
                     try{
                         mat[i, j] = int.Parse(boxybox[i, j].Text);
