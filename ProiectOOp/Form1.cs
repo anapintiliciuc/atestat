@@ -422,7 +422,13 @@ namespace ProiectOOp
             }
         }
 
-        
+        private void afisezRez(int[,] mat, int dim1, int dim2)
+        {
+            for (int i = 0; i < dim1; i++)
+                for (int j = 0; j < dim2; j++)
+                    labelsRez[i, j].Text = mat[i, j].ToString();
+        }
+
         private void btnCalc_click(object sender, EventArgs e)
         {
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
@@ -432,6 +438,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a + b);
+                afisezRez(rez.mat, rez.n, rez.m);
                 //iaDinMat(box, n, m, mat1);
             }
 
@@ -440,6 +447,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a - b);
+                afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Inmultirea a 2 matrice")
@@ -447,29 +455,35 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, m, p);
                 Matrice rez = new Matrice(a * b);
+                afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                iaNM(n_tb, m_tb);
+                Matrice a = new Matrice(box1, n, m);
+                Matrice rez = new Matrice(a ^ putere);
+                afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
                 int factor = a.factorComunMatrice();
+                labelPtRez.Text = factor.ToString();
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
                 int determinant = a.determinant();
+                labelPtRez.Text = determinant.ToString();
             }
 
             if (comboBoxChoice.Text == "Urma unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
                 int urma = a.urmaMatrice();
+                labelPtRez.Text = urma.ToString();
             }
 
             /*if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
@@ -481,11 +495,14 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 int rang = a.rangulMatricei();
+                labelPtRez.Text = rang.ToString();
             }
             
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
-                
+                Matrice a = new Matrice(2, 2);
+                int element = a.fibonacci(k);
+                labelPtRez.Text = element.ToString();
             }
         }
         private void btn_click(object sender, EventArgs e)

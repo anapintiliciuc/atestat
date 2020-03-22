@@ -9,8 +9,8 @@ namespace ProiectOOp
 {
     class Matrice
     {
-        private int[,] mat=new int[15, 15];
-        int n, m;
+        public int[,] mat=new int[15, 15];
+        public int n, m;
 
         public Matrice(TextBox[,] other, int nsize, int msize)
         {
