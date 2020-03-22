@@ -22,7 +22,7 @@ namespace ProiectOOp
 
         }
 
-        TextBox[,] box1, box2, box;
+        TextBox[,] box;
         private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             box = new TextBox[dim1+1, dim2+1];
@@ -50,6 +50,43 @@ namespace ProiectOOp
                 }
             }
         }
+        
+        private void gen_boxDeRez(int dim1, int dim2, Point unde)
+        {
+            labelsRez = new Label[dim1+1, dim2+1];
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+
+            for (int i = 0; i < dim1; i++)
+            {
+                loc1 = unde.X + 10;
+                loc2 = loc2 + 30;
+
+                for (int j = 0; j < dim2; j++)
+                {
+                    labelsRez[i, j] = new Label();
+                    labelsRez[i, j].Name = 'C' + Convert.ToString(i*dim1+j);
+                    loc1 = loc1 + 35;
+                    labelsRez[i, j].Width = 30;
+                    labelsRez[i, j].Height = 30;
+                    labelsRez[i, j].Location = new Point(loc1, loc2 + 30);
+                    this.panel2.Controls.Add(box[i, j]);
+                }
+            }
+        }
+
+        private void gen_boxDeRez(Point unde)
+        {
+            labelPtRez = new Label();
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+            labelPtRez.Name = 'C' + Convert.ToString(1);
+            loc1 = loc1 + 35;
+            labelPtRez.Width = 30;
+            labelPtRez.Height = 30;
+            labelPtRez.Location = new Point(loc1, loc2 + 30);
+            this.panel2.Controls.Add(labelPtRez);
+        }
 
         TextBox n_tb = new TextBox();
         TextBox m_tb = new TextBox();
@@ -72,6 +109,21 @@ namespace ProiectOOp
         private void gen_n()
         {
             n_text.Text = "n = ";
+            n_text.AutoSize = true;
+            n_text.Location = new Point(0, 5);
+            n_tb.Location = new Point(30, 1);
+
+            this.panel2.Controls.Add(n_text);
+            this.panel2.Controls.Add(n_tb);
+
+            btn.Text = "Genereaza";
+            btn.Location = new Point(150, 0);
+            this.panel2.Controls.Add(btn);
+            btn.Click += new EventHandler(this.btn_click);
+        }
+        private void gen_k()
+        {
+            n_text.Text = "k = ";
             n_text.AutoSize = true;
             n_text.Location = new Point(0, 5);
             n_tb.Location = new Point(30, 1);
@@ -158,7 +210,7 @@ namespace ProiectOOp
             btn.Click += new EventHandler(this.btn_click);
         }
 
-        int n, m, p;
+        int n, m, p, k, putere;
         int butGenereaza;
         Point aici1, aici2;
         private void iaN(TextBox x)
@@ -181,6 +233,28 @@ namespace ProiectOOp
             }
 
             gen_mat(n, n, 1, aici1);
+
+            genButtonCalc();
+            //gen_mat(n, n, 2);
+        }
+        private void iaK(TextBox x)
+        {
+            try
+            {
+
+               k = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+            if (k > 1000000000 || k < 0)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
 
             genButtonCalc();
             //gen_mat(n, n, 2);
@@ -224,6 +298,46 @@ namespace ProiectOOp
             }
             gen_mat(n, m, 1, aici1);
             gen_mat(n, m, 2, aici2);
+
+            genButtonCalc();
+        }
+        private void iaNPutere(TextBox x, TextBox y)
+        {
+            try
+            {
+
+               n = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (n > 15 || n < 1)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
+
+            try
+            {
+
+               putere = int.Parse(y.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. putere!");
+                butGenereaza = 0;
+                return;
+            }
+            if (m < 1 || m > 100)
+            {
+                MessageBox.Show("m nu respecta limitele");
+                return;
+            }
+            gen_mat(n, n, 1, aici1);
 
             genButtonCalc();
         }
@@ -316,6 +430,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a + b);
+                //iaDinMat(box, n, m, mat1);
             }
 
             if (comboBoxChoice.Text == "Scadere dintre 2 matrice")
@@ -334,7 +449,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-
+                iaNM(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -393,7 +508,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                    iaNM(n_tb, m_tb);
+                    iaNPutere(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -423,7 +538,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
-
+                iaK(n_tb);
             }
 
         }
@@ -504,6 +619,8 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
+                n_tb.Text = "";
+                m_tb.Text = "";
                 panel2.Controls.Clear();
                 gen_n_m();
             }
@@ -511,8 +628,9 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
+                n_tb.Text = "";
                 panel2.Controls.Clear();
-
+                gen_k();
             }
 
         }
