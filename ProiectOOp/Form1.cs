@@ -549,8 +549,12 @@ namespace ProiectOOp
                 //iaDinMat(box2, n, m, mat2);
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
-                Matrice rez = new Matrice(a + b);
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if(a.ok==1 && b.ok==1)
+                {
+                    Matrice rez = new Matrice(a + b);
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                    
                 //iaDinMat(box, n, m, mat1);
             }
 
@@ -558,8 +562,12 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
-                Matrice rez = new Matrice(a - b);
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if (a.ok == 1 && b.ok == 1)
+                {
+                    Matrice rez = new Matrice(a - b);
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                    
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
@@ -567,59 +575,91 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, m, p);
-                Matrice rez = new Matrice(a * b);
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if (a.ok == 1 && b.ok == 1)
+                {
+                    Matrice rez = new Matrice(a * b);
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                    
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
                 Matrice a = new Matrice(box1, n, n);
-                Matrice rez = new Matrice(a ^ putere);
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if (a.ok == 1)
+                {
+                    Matrice rez = new Matrice(a ^ putere);
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                    
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
-                int factor = a.factorComunMatrice();
-                gen_boxDeRez(factor, aici3);
+                if (a.ok == 1)
+                {
+                    int factor = a.factorComunMatrice();
+                    gen_boxDeRez(factor, aici3);
+                }
+                    
             }
             
             if (comboBoxChoice.Text == "Inmultirea unei matrice cu un numar intreg")
             {
                 Matrice a = new Matrice(box1, n, m);
-                Matrice rez = new Matrice(a * nrDeInmultit);
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if (a.ok == 1)
+                {
+                    Matrice rez = new Matrice(a * nrDeInmultit);
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                    
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
-                int determinant = a.determinant();
-                gen_boxDeRez(determinant, aici3);
+                if (a.ok == 1)
+                {
+                    int determinant = a.determinant();
+                    gen_boxDeRez(determinant, aici3);
+                }
+                    
             }
 
             if (comboBoxChoice.Text == "Urma unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
-                int urma = a.urmaMatrice();
-                gen_boxDeRez(urma, aici3);
+                if (a.ok == 1)
+                {
+                    int urma = a.urmaMatrice();
+                    gen_boxDeRez(urma, aici3);
+                }
+                    
             }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
-                int rang = a.rangulMatricei();
-                gen_boxDeRez(rang, aici3);
+                if (a.ok == 1)
+                {
+                    int rang = a.rangulMatricei();
+                    gen_boxDeRez(rang, aici3);
+                }
+                    
             }
             
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
                 Matrice a = new Matrice(2, 2);
-                int element = a.fibonacci(k);
-                gen_boxDeRez(element, aici3);
+                if (a.ok == 1)
+                {
+                    int element = a.fibonacci(k);
+                    gen_boxDeRez(element, aici3);
+                }
+                    
                 //labelPtRez.Text = element.ToString();
             }
         }

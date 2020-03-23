@@ -11,6 +11,7 @@ namespace ProiectOOp
     {
         public int[,] mat=new int[15, 15];
         public int n, m;
+        public int ok = 1;
 
         public Matrice(TextBox[,] other, int nsize, int msize)
         {
@@ -26,6 +27,7 @@ namespace ProiectOOp
                     catch
                     {
                         MessageBox.Show("Introduceti elemente valide in matrice, va rog frumos!");
+                        ok = 0;
                         return;
                     }
                 }
