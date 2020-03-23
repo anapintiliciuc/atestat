@@ -512,8 +512,8 @@ namespace ProiectOOp
                 {
                     labelsRez[i, j] = new Label();
                     labelsRez[i, j].Name = 'C' + Convert.ToString(i * dim1 + j);
-                    loc1 = loc1 + 35;
-                    labelsRez[i, j].Width = 30;
+                    loc1 = loc1 + 55;
+                    labelsRez[i, j].Width = 50;
                     labelsRez[i, j].Height = 30;
                     labelsRez[i, j].Location = new Point(loc1, loc2 + 30);
                     labelsRez[i, j].Text = mat[i, j].ToString();
