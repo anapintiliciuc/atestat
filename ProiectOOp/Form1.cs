@@ -643,8 +643,12 @@ namespace ProiectOOp
             if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
-                Matrice rez = new Matrice(a.transpusa());
-                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                if(a.ok==1)
+                {
+                    Matrice rez = new Matrice(a.transpusa());
+                    gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+                }
+                
             }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
