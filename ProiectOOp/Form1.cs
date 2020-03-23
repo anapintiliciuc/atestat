@@ -545,13 +545,10 @@ namespace ProiectOOp
             //this.panel2.Controls.Add(rezultat);
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
-                //iaDinMat(box1, n, m, mat1);
-                //iaDinMat(box2, n, m, mat2);
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a + b);
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
-                //iaDinMat(box, n, m, mat1);
             }
 
             if (comboBoxChoice.Text == "Scadere dintre 2 matrice")
@@ -560,7 +557,6 @@ namespace ProiectOOp
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a - b);
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
-                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Inmultirea a 2 matrice")
@@ -569,7 +565,6 @@ namespace ProiectOOp
                 Matrice b = new Matrice(box2, m, p);
                 Matrice rez = new Matrice(a * b);
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
-                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
@@ -577,7 +572,6 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, n);
                 Matrice rez = new Matrice(a ^ putere);
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
-                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -627,7 +621,6 @@ namespace ProiectOOp
                 Matrice a = new Matrice(2, 2);
                 int element = a.fibonacci(k);
                 gen_boxDeRez(element, aici3);
-                //labelPtRez.Text = element.ToString();
             }
         }
         private void btn_click(object sender, EventArgs e)
