@@ -50,6 +50,7 @@
             "Inmultirea a 2 matrice",
             "Ridicarea unei matrice la o putere",
             "Scoaterea unui factor comun dintr-o matrice",
+            "Inmultirea unei matrice cu un numar intreg",
             "Determinantul unei matrice",
             "Urma unei matrice",
             "Rangul unei matrice",

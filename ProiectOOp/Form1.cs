@@ -153,6 +153,35 @@ namespace ProiectOOp
             btn.Click += new EventHandler(this.btn_click);
 
         }
+        private void gen_n_m_nr()
+        {
+            n_text.Text = "n = ";
+            n_text.AutoSize = true;
+            m_text.Text = "m = ";
+            m_text.AutoSize = true;
+            p_text.Text = "nr = ";
+            p_text.AutoSize = true;
+
+            n_text.Location = new Point(0, 4);
+            n_tb.Location = new Point(30, 0);
+            m_text.Location = new Point(0, 34);
+            m_tb.Location = new Point(30, 30);
+            p_text.Location = new Point(0, 64);
+            p_tb.Location = new Point(30, 60);
+
+            this.panel3.Controls.Add(m_text);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(p_text);
+            this.panel3.Controls.Add(n_tb);
+            this.panel3.Controls.Add(m_tb);
+            this.panel3.Controls.Add(p_tb);
+
+            btn.Text = "Genereaza";
+            btn.Location = new Point(150, 30);
+            this.panel3.Controls.Add(btn);
+            btn.Click += new EventHandler(this.btn_click);
+
+        }
 
         private void gen_n_putere()
         {
@@ -176,7 +205,7 @@ namespace ProiectOOp
             btn.Click += new EventHandler(this.btn_click);
         }
 
-        int n, m, p, k, putere;
+        int n, m, p, k, putere, nrDeInmultit;
         int butGenereaza;
         Point aici1, aici2, aici3;
         private void iaN(TextBox x)
@@ -212,18 +241,77 @@ namespace ProiectOOp
             }
             catch
             {
-                MessageBox.Show("Dati o valoare valida pt. n!");
+                MessageBox.Show("Dati o valoare valida pt. k!");
                 butGenereaza = 0;
                 return;
             }
             if (k > 1000000000 || k < 0)
             {
-                MessageBox.Show("n nu respecta limitele");
+                MessageBox.Show("k nu respecta limitele");
                 return;
             }
 
             genButtonCalc();
             //gen_mat(n, n, 2);
+        }
+        private void iaNMNr(TextBox x, TextBox y, TextBox z)
+        {
+            try
+            {
+
+                n = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (n > 10 || n < 1)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
+
+            try
+            {
+
+                m = int.Parse(y.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. m!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (m > 10 || m < 1)
+            {
+                MessageBox.Show("m nu respecta limitele");
+                return;
+            }
+
+            try
+            {
+                nrDeInmultit = int.Parse(z.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. nr cu care doriti sa inmultiti!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (nrDeInmultit > 1000000000)
+            {
+                MessageBox.Show("Numarul este un pic prea mare, nu credeti?");
+                return;
+            }
+
+            box1 = gen_mat(n, m, 1, aici1);
+
+            genButtonCalc();
         }
 
         private void iaNMDar1Mat(TextBox x, TextBox y)
@@ -468,8 +556,9 @@ namespace ProiectOOp
             int loc2 = unde.Y;
             labelPtRez.Name = 'C' + Convert.ToString(1);
             loc1 = loc1 + 35;
-            labelPtRez.Width = 30;
-            labelPtRez.Height = 30;
+            /*labelPtRez.Width = 30;
+            labelPtRez.Height = 30;*/
+            labelPtRez.AutoSize = true;
             labelPtRez.Location = new Point(loc1, loc2 + 30);
             labelPtRez.Text = el.ToString();
             this.panel2.Controls.Add(labelPtRez);
@@ -523,6 +612,15 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 int factor = a.factorComunMatrice();
                 gen_boxDeRez(factor, aici3);
+            }
+            
+            if (comboBoxChoice.Text == "Inmultirea unei matrice cu un numar intreg")
+            {/**
+                Matrice a = new Matrice(box1, n, m);
+                int factor = a.factorComunMatrice();
+                gen_boxDeRez(factor, aici3);
+                    vezi ce trebuie pus
+                **/
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
@@ -592,6 +690,10 @@ namespace ProiectOOp
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
             {
                     iaNMDar1Mat(n_tb, m_tb);
+            }
+            if (comboBoxChoice.Text == "Inmultirea unei matrice cu un numar intreg")
+            {
+                    iaNMNr(n_tb, m_tb, p_tb);
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
@@ -680,6 +782,16 @@ namespace ProiectOOp
                 panel2.Controls.Clear();
                 panel3.Controls.Clear();
                 gen_n_m();
+                return;
+            }
+
+            if(comboBoxChoice.Text == "Inmultirea unei matrice cu un numar intreg")
+            {
+                n_tb.Text = "";
+                m_tb.Text = "";
+                panel2.Controls.Clear();
+                panel3.Controls.Clear();
+                gen_n_m_nr();
                 return;
             }
 
