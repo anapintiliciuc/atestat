@@ -18,7 +18,17 @@ namespace ProiectOOp
             this.m = msize;
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < m; j++)
-                    this.mat[i, j] = int.Parse(other[i, j].Text);
+                {
+                    try
+                    {
+                        this.mat[i, j] = int.Parse(other[i, j].Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Introduceti elemente valide in matrice, va rog frumos!");
+                    }
+                }
+                    //this.mat[i, j] = int.Parse(other[i, j].Text);
         }
 
         public Matrice(Matrice other)
