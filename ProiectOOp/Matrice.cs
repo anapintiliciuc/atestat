@@ -73,9 +73,9 @@ namespace ProiectOOp
         public static Matrice operator*(Matrice a, Matrice b)
         {
             Matrice rez = new Matrice(a.n, b.m);
-            for (int i = 1; i <= a.n; i++)
-                for (int j = 1; j <= b.m; j++)
-                    for (int k = 1; k <= a.m; k++)
+            for (int i = 0; i < a.n; i++)
+                for (int j = 0; j < b.m; j++)
+                    for (int k = 0; k < a.m; k++)
                             rez.mat[i, j] += a.mat[i, k] * b.mat[k, j];
             return new Matrice(rez);
         }
@@ -111,6 +111,7 @@ namespace ProiectOOp
         public static Matrice operator^(Matrice a, int put)
         {
             Matrice rez = new Matrice(a);
+            put--;
             while(put != 0)
             {
                 if(put % 2 != 0)
