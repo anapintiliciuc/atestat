@@ -495,34 +495,7 @@ namespace ProiectOOp
 
             genButtonCalc();
         }
-        /*private void iaDinMat(TextBox[,] boxybox, int dim1, int dim2, int[,] mat)
-        {
-            int x;
-            for(int i=0; i<dim1; i++)
-            {
-                for(int j=0; j<dim2; j++)
-                {
-                    try{
-                        x = int.Parse(boxybox[i, j].Text);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Introduceti elemente valide in matrice, va rog frumos!");
-                        return;
-                    }
-                }
-            }
-        }*/
-
-        /*private void afisezRez(int[,] mat, int dim1, int dim2)
-        {
-            for (int i = 0; i < dim1; i++)
-                for (int j = 0; j < dim2; j++)
-                {
-                    labelsRez[i, j].Text = mat[i, j].ToString();
-
-                }
-        }*/
+        
 
         private void gen_boxDeRez(int[,] mat, int dim1, int dim2, Point unde)
         {
@@ -615,12 +588,10 @@ namespace ProiectOOp
             }
             
             if (comboBoxChoice.Text == "Inmultirea unei matrice cu un numar intreg")
-            {/**
+            {
                 Matrice a = new Matrice(box1, n, m);
-                int factor = a.factorComunMatrice();
-                gen_boxDeRez(factor, aici3);
-                    vezi ce trebuie pus
-                **/
+                Matrice rez = new Matrice(a * nrDeInmultit);
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
@@ -637,10 +608,10 @@ namespace ProiectOOp
                 gen_boxDeRez(urma, aici3);
             }
 
-            if (comboBoxChoice.Text == "Transpusa unei matrice")
+            if (comboBoxChoice.Text == "Inversa unei matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
-                Matrice rez = new Matrice(a.transpusa());
+                Matrice rez = new Matrice(a.inversa());
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
             }
 

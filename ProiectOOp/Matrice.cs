@@ -339,7 +339,7 @@ namespace ProiectOOp
 
             for (i = 0; i < n; i++)
                 for (j = 0; j < n; j++)
-                    rez.mat[i, j] = mat[i, n + j];
+                    rez.mat[i, j] = mat[i, n + j-1];
 
             return rez;
         }
