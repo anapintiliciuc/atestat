@@ -601,7 +601,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
-                Matrice a = new Matrice(box1, n, m);
+                Matrice a = new Matrice(box1, n, n);
                 Matrice rez = new Matrice(a ^ putere);
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
                 //afisezRez(rez.mat, rez.n, rez.m);

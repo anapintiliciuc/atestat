@@ -50,8 +50,17 @@ namespace ProiectOOp
                     this.mat[i, j] = 0;
         }
 
+        public Matrice(int[,] a, int othern, int otherm)
+        {
+            this.n = othern;
+            this.m = otherm;
+            for (int i = 0; i < this.n; i++)
+                for (int j = 0; j < this.m; j++)
+                    this.mat[i, j] = a[i, j];
+        }
+
         ///adunare
-        
+
         public static Matrice operator+(Matrice a, Matrice b)
         {
             for (int i = 0; i < a.n; i++)
@@ -73,9 +82,9 @@ namespace ProiectOOp
         public static Matrice operator*(Matrice a, Matrice b)
         {
             Matrice rez = new Matrice(a.n, b.m);
-            for (int i = 1; i <= a.n; i++)
-                for (int j = 1; j <= b.m; j++)
-                    for (int k = 1; k <= a.m; k++)
+            for (int i = 0; i < a.n; i++)
+                for (int j = 0; j < b.m; j++)
+                    for (int k = 0; k < a.m; k++)
                             rez.mat[i, j] += a.mat[i, k] * b.mat[k, j];
             return new Matrice(rez);
         }
@@ -111,6 +120,7 @@ namespace ProiectOOp
         public static Matrice operator^(Matrice a, int put)
         {
             Matrice rez = new Matrice(a);
+            put--;
             while(put != 0)
             {
                 if(put % 2 != 0)
@@ -143,34 +153,43 @@ namespace ProiectOOp
             return factor;
         }
 
-        public int det(int dim, int[,] a)
+        private void getCofactor(int[,] a,  int[,] temp, int p, int q, int dim)
         {
-            int d = 0;
-            int k, i, j, subi, subj;
-            int[,] subMat = new int[dim, dim];
-            if (dim == 2)
-                return (a[0, 0] * a[1, 1]) - (a[1, 0] * a[0, 1]);
-            else
+            int i = 0, j = 0;
+
+            for(int row=0; row<dim; row++)
             {
-                for(k=0; k<dim; k++)
+                for(int col=0; col<dim; col++)
                 {
-                    subi = 0;
-                    for(i=1; i<dim; i++)
+                    if(row!=p && col!=q)
                     {
-                        subj = 0;
-                        for(j=0; j<dim; j++)
+                        temp[i, j++] = a[row, col];
+                        if(j==dim-1)
                         {
-                            if (j == k)
-                                continue;
-                            subMat[subi, subj] = a[i, j];
-                            subj++;
+                            j = 0;
+                            i++;
                         }
-                        subi++;
                     }
-                    int put = (int)Math.Pow(-1, k);
-                    d += put * mat[0, k] * det(dim - 1, subMat);
                 }
             }
+        }
+
+        private int det(int dim, int[,] a)
+        {
+            int d = 0;
+
+            if (dim == 1)
+                return a[0, 0];
+
+            int[,] temp=new int[n, n];
+            int semn = 1;
+            for(int f=0; f<n; f++)
+            {
+                getCofactor(a, temp, 0, f, n);
+                d += semn * a[0, f] * det(dim - 1, temp);
+                semn = -semn;
+            }
+            
             return d;
         }
 
@@ -282,9 +301,47 @@ namespace ProiectOOp
             m.mat[0, 0] = 1;
             m.mat[0, 1] = 1;
             m.mat[1, 0] = 1;
-            m.mat[1, 1] = 1;
+            m.mat[1, 1] = 0;
             m = new Matrice(m ^ put);
-            return m.mat[0, 0];
+            return m.mat[0, 1];
+        }
+
+        //inversa
+
+        public Matrice inversa()
+        {
+            Matrice rez = new Matrice(n, m);
+            int d = 1;
+            int i, j, l;
+            for (i = 0; i < n; i++)
+                for (j = n; j < 2 * n; j++)
+                    if (i == (j - n))
+                        mat[i, j] = 1;
+                    else mat[i, j] = 0;
+            for (i = 0; i < n && d != 0; i++)
+            {
+                for (j = i; j < n && mat[j, i] == 0; j++) ;
+
+                if (j >= n)
+                    d = 0;
+                else if (j > i)
+                    for (l = 0; l < 2 * n; l++)
+                        mat[i, l] += mat[j, l];
+                if (mat[i, i] != 1)
+                    for (l = 2 * n - 1; l >= 0; l--)
+                        mat[i, l] /= mat[i, i];
+
+                for (j = 0; j < n; j++)
+                    if (j != i)
+                        for (l = 2 * n - 1; l >= i; l--)
+                            mat[j, l] -= mat[j, i] * mat[i, l];
+            }
+
+            for (i = 0; i < n; i++)
+                for (j = 0; j < n; j++)
+                    rez.mat[i, j] = mat[i, n + j];
+
+            return rez;
         }
 
     }
