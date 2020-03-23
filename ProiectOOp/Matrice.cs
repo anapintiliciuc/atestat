@@ -26,6 +26,7 @@ namespace ProiectOOp
                     catch
                     {
                         MessageBox.Show("Introduceti elemente valide in matrice, va rog frumos!");
+                        return;
                     }
                 }
                     //this.mat[i, j] = int.Parse(other[i, j].Text);

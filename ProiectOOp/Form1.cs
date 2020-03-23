@@ -22,10 +22,10 @@ namespace ProiectOOp
 
         }
 
-        TextBox[,] box, box1, box2;
+        TextBox[,] box1, box2;
         Label[,] labelsRez;
         Label labelPtRez;
-        private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
+        private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde, TextBox[,] box)
         {
             box = new TextBox[dim1+1, dim2+1];
             int loc1 = unde.X + 80;
@@ -51,43 +51,6 @@ namespace ProiectOOp
                     this.panel2.Controls.Add(box[i, j]);
                 }
             }
-        }
-        
-        private void gen_boxDeRez(int dim1, int dim2, Point unde)
-        {
-            labelsRez = new Label[dim1+1, dim2+1];
-            int loc1 = unde.X + 80;
-            int loc2 = unde.Y;
-
-            for (int i = 0; i < dim1; i++)
-            {
-                loc1 = unde.X + 10;
-                loc2 = loc2 + 30;
-
-                for (int j = 0; j < dim2; j++)
-                {
-                    labelsRez[i, j] = new Label();
-                    labelsRez[i, j].Name = 'C' + Convert.ToString(i*dim1+j);
-                    loc1 = loc1 + 35;
-                    labelsRez[i, j].Width = 30;
-                    labelsRez[i, j].Height = 30;
-                    labelsRez[i, j].Location = new Point(loc1, loc2 + 30);
-                    this.panel2.Controls.Add(box[i, j]);
-                }
-            }
-        }
-
-        private void gen_boxDeRez(Point unde)
-        {
-            labelPtRez = new Label();
-            int loc1 = unde.X + 80;
-            int loc2 = unde.Y;
-            labelPtRez.Name = 'C' + Convert.ToString(1);
-            loc1 = loc1 + 35;
-            labelPtRez.Width = 30;
-            labelPtRez.Height = 30;
-            labelPtRez.Location = new Point(loc1, loc2 + 30);
-            this.panel2.Controls.Add(labelPtRez);
         }
 
         TextBox n_tb = new TextBox();
@@ -214,7 +177,7 @@ namespace ProiectOOp
 
         int n, m, p, k, putere;
         int butGenereaza;
-        Point aici1, aici2;
+        Point aici1, aici2, aici3;
         private void iaN(TextBox x)
         {
             try
@@ -228,13 +191,13 @@ namespace ProiectOOp
                 butGenereaza = 0;
                 return;
             }
-            if (n > 15 || n < 1)
+            if (n > 10 || n < 1)
             {
                 MessageBox.Show("n nu respecta limitele");
                 return;
             }
 
-            gen_mat(n, n, 1, aici1);
+            gen_mat(n, n, 1, aici1, box1);
 
             genButtonCalc();
             //gen_mat(n, n, 2);
@@ -276,7 +239,7 @@ namespace ProiectOOp
                 return;
             }
 
-            if (n > 15 || n < 1)
+            if (n > 10 || n < 1)
             {
                 MessageBox.Show("n nu respecta limitele");
                 return;
@@ -293,13 +256,13 @@ namespace ProiectOOp
                 butGenereaza = 0;
                 return;
             }
-            if (m > 15 || m < 1)
+            if (m > 10 || m < 1)
             {
                 MessageBox.Show("m nu respecta limitele");
                 return;
             }
-            gen_mat(n, m, 1, aici1);
-            gen_mat(n, m, 2, aici2);
+            gen_mat(n, m, 1, aici1, box1);
+            gen_mat(n, m, 2, aici2, box2);
 
             genButtonCalc();
         }
@@ -317,7 +280,7 @@ namespace ProiectOOp
                 return;
             }
 
-            if (n > 15 || n < 1)
+            if (n > 10 || n < 1)
             {
                 MessageBox.Show("n nu respecta limitele");
                 return;
@@ -339,7 +302,7 @@ namespace ProiectOOp
                 MessageBox.Show("m nu respecta limitele");
                 return;
             }
-            gen_mat(n, n, 1, aici1);
+            gen_mat(n, n, 1, aici1, box1);
 
             genButtonCalc();
         }
@@ -357,7 +320,7 @@ namespace ProiectOOp
                 return;
             }
 
-            if (n > 15 || n < 1)
+            if (n > 10 || n < 1)
             {
                 MessageBox.Show("n nu respecta limitele");
                 return;
@@ -375,7 +338,7 @@ namespace ProiectOOp
                 return;
             }
 
-            if (m > 15 || m < 1)
+            if (m > 10 || m < 1)
             {
                 MessageBox.Show("m nu respecta limitele");
                 return;
@@ -392,45 +355,87 @@ namespace ProiectOOp
                 return;
             }
 
-            if (p > 15 || p < 1)
+            if (p > 10 || p < 1)
             {
                 MessageBox.Show("p nu respecta limitele");
                 return;
             }
 
-            gen_mat(n, m, 1, aici1);
-            gen_mat(m, p, 2, aici2);
+            gen_mat(n, m, 1, aici1, box1);
+            gen_mat(m, p, 2, aici2, box2);
 
             genButtonCalc();
         }
-        int[,] mat1;
-        int[,] mat2;
-        private void iaDinMat(TextBox[,] boxybox, int dim1, int dim2, int[,] mat)
+        /*private void iaDinMat(TextBox[,] boxybox, int dim1, int dim2, int[,] mat)
         {
+            int x;
             for(int i=0; i<dim1; i++)
             {
                 for(int j=0; j<dim2; j++)
                 {
                     try{
-                        mat[i, j] = int.Parse(boxybox[i, j].Text);
+                        x = int.Parse(boxybox[i, j].Text);
                     }
                     catch
                     {
                         MessageBox.Show("Introduceti elemente valide in matrice, va rog frumos!");
+                        return;
                     }
+                }
+            }
+        }*/
+
+        /*private void afisezRez(int[,] mat, int dim1, int dim2)
+        {
+            for (int i = 0; i < dim1; i++)
+                for (int j = 0; j < dim2; j++)
+                {
+                    labelsRez[i, j].Text = mat[i, j].ToString();
+
+                }
+        }*/
+
+        private void gen_boxDeRez(int[,] mat, int dim1, int dim2, Point unde)
+        {
+            labelsRez = new Label[dim1 + 1, dim2 + 1];
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+
+            for (int i = 0; i < dim1; i++)
+            {
+                loc1 = unde.X + 10;
+                loc2 = loc2 + 30;
+
+                for (int j = 0; j < dim2; j++)
+                {
+                    labelsRez[i, j] = new Label();
+                    labelsRez[i, j].Name = 'C' + Convert.ToString(i * dim1 + j);
+                    loc1 = loc1 + 35;
+                    labelsRez[i, j].Width = 30;
+                    labelsRez[i, j].Height = 30;
+                    labelsRez[i, j].Location = new Point(loc1, loc2 + 30);
+                    labelsRez[i, j].Text = mat[i, j].ToString();
+                    this.panel2.Controls.Add(labelsRez[i, j]);
                 }
             }
         }
 
-        private void afisezRez(int[,] mat, int dim1, int dim2)
+        private void gen_boxDeRez(Point unde)
         {
-            for (int i = 0; i < dim1; i++)
-                for (int j = 0; j < dim2; j++)
-                    labelsRez[i, j].Text = mat[i, j].ToString();
+            labelPtRez = new Label();
+            int loc1 = unde.X + 80;
+            int loc2 = unde.Y;
+            labelPtRez.Name = 'C' + Convert.ToString(1);
+            loc1 = loc1 + 35;
+            labelPtRez.Width = 30;
+            labelPtRez.Height = 30;
+            labelPtRez.Location = new Point(loc1, loc2 + 30);
+            this.panel2.Controls.Add(labelPtRez);
         }
 
         private void btnCalc_click(object sender, EventArgs e)
         {
+            //Point puneAici = box1[n-1, 1].Location;
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
                 //iaDinMat(box1, n, m, mat1);
@@ -438,7 +443,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a + b);
-                afisezRez(rez.mat, rez.n, rez.m);
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
                 //iaDinMat(box, n, m, mat1);
             }
 
@@ -447,7 +452,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a - b);
-                afisezRez(rez.mat, rez.n, rez.m);
+                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Inmultirea a 2 matrice")
@@ -455,14 +460,14 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, m, p);
                 Matrice rez = new Matrice(a * b);
-                afisezRez(rez.mat, rez.n, rez.m);
+                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
             {
                 Matrice a = new Matrice(box1, n, m);
                 Matrice rez = new Matrice(a ^ putere);
-                afisezRez(rez.mat, rez.n, rez.m);
+                //afisezRez(rez.mat, rez.n, rez.m);
             }
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -486,10 +491,10 @@ namespace ProiectOOp
                 labelPtRez.Text = urma.ToString();
             }
 
-            /*if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
+            if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
                 iaN(n_tb);
-            }*/
+            }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
@@ -544,12 +549,12 @@ namespace ProiectOOp
             {
                     iaN(n_tb);
             }
-            /*
-            if (comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
+            
+            if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
-                    iaN(n_tb);
+                iaNM(n_tb, m_tb);
             }
-            */
+            
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
                 iaNM(n_tb, m_tb);
@@ -572,6 +577,7 @@ namespace ProiectOOp
             butGenereaza = 0;
             aici1 = this.label1.Location;
             aici2 = this.label2.Location;
+            aici3 = this.label3.Location;
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
                 n_tb.Text = "";
@@ -628,13 +634,14 @@ namespace ProiectOOp
                 gen_n();
             }
 
-           /* if(comboBoxChoice.Text == "Factorul comun dintr-un determinant de pe o anumita linie/coloana")
+            if(comboBoxChoice.Text == "Transpusa unei matrice")
             {
                 n_tb.Text = "";
+                m_tb.Text = "";
                 panel2.Controls.Clear();
-                gen_n();
+                gen_n_m();
 
-            }*/
+            }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {

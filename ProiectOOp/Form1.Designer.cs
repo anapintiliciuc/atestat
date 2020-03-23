@@ -35,6 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             "Determinantul unei matrice",
             "Urma unei matrice",
             "Rangul unei matrice",
+            "Transpusa unei matrice",
             "Al k-lea element Fibonacci"});
             this.comboBoxChoice.Location = new System.Drawing.Point(276, 26);
             this.comboBoxChoice.Name = "comboBoxChoice";
@@ -88,17 +90,18 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(12, 91);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1571, 814);
+            this.panel2.Size = new System.Drawing.Size(1687, 906);
             this.panel2.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(934, 203);
+            this.label2.Location = new System.Drawing.Point(646, 203);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 13);
             this.label2.TabIndex = 1;
@@ -113,11 +116,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = ".";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1125, 203);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(10, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = ".";
+            // 
             // FormMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1595, 917);
+            this.ClientSize = new System.Drawing.Size(1637, 930);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -141,6 +153,7 @@
         private System.Windows.Forms.Label labelAlegere;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
