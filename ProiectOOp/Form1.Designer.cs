@@ -55,6 +55,7 @@
             "Urma unei matrice",
             "Rangul unei matrice",
             "Transpusa unei matrice",
+            "Inversa unei matrice",
             "Al k-lea element Fibonacci"});
             this.comboBoxChoice.Location = new System.Drawing.Point(276, 26);
             this.comboBoxChoice.Name = "comboBoxChoice";

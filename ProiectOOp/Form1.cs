@@ -643,6 +643,12 @@ namespace ProiectOOp
                 Matrice rez = new Matrice(a.transpusa());
                 gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
             }
+            if (comboBoxChoice.Text == "Transpusa unei matrice")
+            {
+                Matrice a = new Matrice(box1, n, m);
+                Matrice rez = new Matrice(a.transpusa());
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+            }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
@@ -707,6 +713,10 @@ namespace ProiectOOp
             }
             
             if (comboBoxChoice.Text == "Transpusa unei matrice")
+            {
+                    iaNMDar1Mat(n_tb, m_tb);
+            }
+            if (comboBoxChoice.Text == "Inversa unei matrice")
             {
                     iaNMDar1Mat(n_tb, m_tb);
             }
@@ -814,6 +824,16 @@ namespace ProiectOOp
             }
 
             if(comboBoxChoice.Text == "Transpusa unei matrice")
+            {
+                n_tb.Text = "";
+                m_tb.Text = "";
+                panel2.Controls.Clear();
+                panel3.Controls.Clear();
+                gen_n_m();
+                return;
+            }
+            
+            if(comboBoxChoice.Text == "Inversa unei matrice")
             {
                 n_tb.Text = "";
                 m_tb.Text = "";
