@@ -638,9 +638,7 @@ namespace ProiectOOp
                     
             }
 
-                int urma = a.urmaMatrice();
-                gen_boxDeRez(urma, aici3);
-            }
+     
 
             if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
