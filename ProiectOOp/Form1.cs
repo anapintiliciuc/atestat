@@ -226,6 +226,46 @@ namespace ProiectOOp
             //gen_mat(n, n, 2);
         }
 
+        private void iaNMDar1Mat(TextBox x, TextBox y)
+        {
+            try
+            {
+
+               n = int.Parse(x.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. n!");
+                butGenereaza = 0;
+                return;
+            }
+
+            if (n > 10 || n < 1)
+            {
+                MessageBox.Show("n nu respecta limitele");
+                return;
+            }
+
+            try
+            {
+
+               m = int.Parse(y.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Dati o valoare valida pt. m!");
+                butGenereaza = 0;
+                return;
+            }
+            if (m > 10 || m < 1)
+            {
+                MessageBox.Show("m nu respecta limitele");
+                return;
+            }
+            box1=gen_mat(n, m, 1, aici1);
+
+            genButtonCalc();
+        }
         private void iaNM(TextBox x, TextBox y)
         {
             try
@@ -298,9 +338,9 @@ namespace ProiectOOp
                 butGenereaza = 0;
                 return;
             }
-            if (m < 1 || m > 100)
+            if (putere < 1 || putere > 100)
             {
-                MessageBox.Show("m nu respecta limitele");
+                MessageBox.Show("puterea nu respecta limitele");
                 return;
             }
             box1=gen_mat(n, n, 1, aici1);
@@ -434,10 +474,13 @@ namespace ProiectOOp
             labelPtRez.Text = el.ToString();
             this.panel2.Controls.Add(labelPtRez);
         }
-
+        Label rezultat;
         private void btnCalc_click(object sender, EventArgs e)
         {
             //Point puneAici = box1[n-1, 1].Location;
+            //rezultat.Location = aici3;
+            //rezultat.Text = "REZULTAT:";
+            //this.panel2.Controls.Add(rezultat);
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
                 //iaDinMat(box1, n, m, mat1);
@@ -548,7 +591,7 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
             {
-                    iaNM(n_tb, m_tb);
+                    iaNMDar1Mat(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
@@ -563,17 +606,17 @@ namespace ProiectOOp
             
             if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
-                iaNM(n_tb, m_tb);
+                    iaNMDar1Mat(n_tb, m_tb);
             }
             
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
-                iaNM(n_tb, m_tb);
+                    iaNMDar1Mat(n_tb, m_tb);
             }
 
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
-                iaK(n_tb);
+                    iaK(n_tb);
             }
             butGenereaza = 1;
         }
