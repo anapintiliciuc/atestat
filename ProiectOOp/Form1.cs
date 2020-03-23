@@ -545,8 +545,6 @@ namespace ProiectOOp
             //this.panel2.Controls.Add(rezultat);
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
-                //iaDinMat(box1, n, m, mat1);
-                //iaDinMat(box2, n, m, mat2);
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 if(a.ok==1 && b.ok==1)
@@ -640,6 +638,17 @@ namespace ProiectOOp
                     
             }
 
+                int urma = a.urmaMatrice();
+                gen_boxDeRez(urma, aici3);
+            }
+
+            if (comboBoxChoice.Text == "Transpusa unei matrice")
+            {
+                Matrice a = new Matrice(box1, n, m);
+                Matrice rez = new Matrice(a.transpusa());
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+            }
+
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
@@ -665,7 +674,6 @@ namespace ProiectOOp
         }
         private void btn_click(object sender, EventArgs e)
         {
-            //MessageBox.Show("hjhsf");
             if(butGenereaza != 0)
             {
                 panel2.Controls.Clear();
