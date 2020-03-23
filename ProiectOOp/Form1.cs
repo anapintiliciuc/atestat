@@ -608,6 +608,13 @@ namespace ProiectOOp
                 gen_boxDeRez(urma, aici3);
             }
 
+            if (comboBoxChoice.Text == "Transpusa unei matrice")
+            {
+                Matrice a = new Matrice(box1, n, m);
+                Matrice rez = new Matrice(a.transpusa());
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
+            }
+
             if (comboBoxChoice.Text == "Rangul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, m);
@@ -625,7 +632,6 @@ namespace ProiectOOp
         }
         private void btn_click(object sender, EventArgs e)
         {
-            //MessageBox.Show("hjhsf");
             if(butGenereaza != 0)
             {
                 panel2.Controls.Clear();
