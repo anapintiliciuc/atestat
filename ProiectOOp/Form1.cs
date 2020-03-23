@@ -68,7 +68,7 @@ namespace ProiectOOp
             btnCalc.Text = "Calculeaza";
             Point saPun = buttonCalculeaza.Location;
             btnCalc.Location = new Point(saPun.X, saPun.Y+7);
-            this.panel2.Controls.Add(btnCalc);
+            this.panel3.Controls.Add(btnCalc);
             btnCalc.Click += new EventHandler(this.btnCalc_click);
         }
         private void gen_n()
@@ -78,12 +78,12 @@ namespace ProiectOOp
             n_text.Location = new Point(0, 5);
             n_tb.Location = new Point(30, 1);
 
-            this.panel2.Controls.Add(n_text);
-            this.panel2.Controls.Add(n_tb);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(n_tb);
 
             btn.Text = "Genereaza";
             btn.Location = new Point(150, 0);
-            this.panel2.Controls.Add(btn);
+            this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
         }
         private void gen_k()
@@ -93,12 +93,12 @@ namespace ProiectOOp
             n_text.Location = new Point(0, 5);
             n_tb.Location = new Point(30, 1);
 
-            this.panel2.Controls.Add(n_text);
-            this.panel2.Controls.Add(n_tb);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(n_tb);
 
             btn.Text = "Genereaza";
             btn.Location = new Point(150, 0);
-            this.panel2.Controls.Add(btn);
+            this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
         }
         private void gen_n_m()
@@ -112,14 +112,14 @@ namespace ProiectOOp
             m_text.Location = new Point(0, 54);
             m_tb.Location = new Point(30, 50);
 
-            this.panel2.Controls.Add(m_text);
-            this.panel2.Controls.Add(n_text);
-            this.panel2.Controls.Add(n_tb);
-            this.panel2.Controls.Add(m_tb);
+            this.panel3.Controls.Add(m_text);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(n_tb);
+            this.panel3.Controls.Add(m_tb);
 
             btn.Text = "Genereaza";
             btn.Location = new Point(150, 25);
-            this.panel2.Controls.Add(btn);
+            this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
         }
 
@@ -139,16 +139,16 @@ namespace ProiectOOp
             p_text.Location = new Point(0, 64);
             p_tb.Location = new Point(30, 60);
 
-            this.panel2.Controls.Add(m_text);
-            this.panel2.Controls.Add(n_text);
-            this.panel2.Controls.Add(p_text);
-            this.panel2.Controls.Add(n_tb);
-            this.panel2.Controls.Add(m_tb);
-            this.panel2.Controls.Add(p_tb);
+            this.panel3.Controls.Add(m_text);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(p_text);
+            this.panel3.Controls.Add(n_tb);
+            this.panel3.Controls.Add(m_tb);
+            this.panel3.Controls.Add(p_tb);
 
             btn.Text = "Genereaza";
             btn.Location = new Point(150, 30);
-            this.panel2.Controls.Add(btn);
+            this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
 
         }
@@ -164,14 +164,14 @@ namespace ProiectOOp
             m_text.Location = new Point(0, 54);
             m_tb.Location = new Point(50, 50);
 
-            this.panel2.Controls.Add(m_text);
-            this.panel2.Controls.Add(n_text);
-            this.panel2.Controls.Add(n_tb);
-            this.panel2.Controls.Add(m_tb);
+            this.panel3.Controls.Add(m_text);
+            this.panel3.Controls.Add(n_text);
+            this.panel3.Controls.Add(n_tb);
+            this.panel3.Controls.Add(m_tb);
 
             btn.Text = "Genereaza";
             btn.Location = new Point(150, 25);
-            this.panel2.Controls.Add(btn);
+            this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
         }
 
@@ -420,7 +420,7 @@ namespace ProiectOOp
             }
         }
 
-        private void gen_boxDeRez(Point unde)
+        private void gen_boxDeRez(int el, Point unde)
         {
             labelPtRez = new Label();
             int loc1 = unde.X + 80;
@@ -430,6 +430,7 @@ namespace ProiectOOp
             labelPtRez.Width = 30;
             labelPtRez.Height = 30;
             labelPtRez.Location = new Point(loc1, loc2 + 30);
+            labelPtRez.Text = el.ToString();
             this.panel2.Controls.Add(labelPtRez);
         }
 
@@ -452,6 +453,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, n, m);
                 Matrice rez = new Matrice(a - b);
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
@@ -460,6 +462,7 @@ namespace ProiectOOp
                 Matrice a = new Matrice(box1, n, m);
                 Matrice b = new Matrice(box2, m, p);
                 Matrice rez = new Matrice(a * b);
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
@@ -467,6 +470,7 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 Matrice rez = new Matrice(a ^ putere);
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
                 //afisezRez(rez.mat, rez.n, rez.m);
             }
 
@@ -474,21 +478,21 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 int factor = a.factorComunMatrice();
-                labelPtRez.Text = factor.ToString();
+                gen_boxDeRez(factor, aici3);
             }
 
             if (comboBoxChoice.Text == "Determinantul unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
                 int determinant = a.determinant();
-                labelPtRez.Text = determinant.ToString();
+                gen_boxDeRez(determinant, aici3);
             }
 
             if (comboBoxChoice.Text == "Urma unei matrice")
             {
                 Matrice a = new Matrice(box1, n, n);
                 int urma = a.urmaMatrice();
-                labelPtRez.Text = urma.ToString();
+                gen_boxDeRez(urma, aici3);
             }
 
             if (comboBoxChoice.Text == "Transpusa unei matrice")
@@ -500,20 +504,24 @@ namespace ProiectOOp
             {
                 Matrice a = new Matrice(box1, n, m);
                 int rang = a.rangulMatricei();
-                labelPtRez.Text = rang.ToString();
+                gen_boxDeRez(rang, aici3);
             }
             
             if (comboBoxChoice.Text == "Al k-lea element Fibonacci")
             {
                 Matrice a = new Matrice(2, 2);
                 int element = a.fibonacci(k);
-                labelPtRez.Text = element.ToString();
+                gen_boxDeRez(element, aici3);
+                //labelPtRez.Text = element.ToString();
             }
         }
         private void btn_click(object sender, EventArgs e)
         {
             //MessageBox.Show("hjhsf");
-
+            if(butGenereaza != 0)
+            {
+                panel2.Controls.Clear();
+            }
             if (comboBoxChoice.Text == "Adunare a 2 matrice")
             {
                     iaNM(n_tb, m_tb);
@@ -564,7 +572,7 @@ namespace ProiectOOp
             {
                 iaK(n_tb);
             }
-
+            butGenereaza = 1;
         }
 
         private void buttonCalculeaza_Click(object sender, EventArgs e)
@@ -583,7 +591,9 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m();
+                return;
             }
 
             if(comboBoxChoice.Text == "Scadere dintre 2 matrice")
@@ -591,7 +601,9 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m();
+                return;
             }
 
             if (comboBoxChoice.Text == "Inmultirea a 2 matrice")
@@ -600,8 +612,9 @@ namespace ProiectOOp
                 m_tb.Text = "";
                 p_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m_p();
-
+                return;
             }
 
             if(comboBoxChoice.Text == "Ridicarea unei matrice la o putere")
@@ -609,7 +622,9 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_putere();
+                return;
             }
 
             if(comboBoxChoice.Text == "Scoaterea unui factor comun dintr-o matrice")
@@ -617,21 +632,27 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m();
+                return;
             }
 
             if(comboBoxChoice.Text == "Determinantul unei matrice")
             {
                 n_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n();
+                return;
             }
             
             if(comboBoxChoice.Text == "Urma unei matrice")
             {
                 n_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n();
+                return;
             }
 
             if(comboBoxChoice.Text == "Transpusa unei matrice")
@@ -639,8 +660,9 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m();
-
+                return;
             }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
@@ -648,7 +670,9 @@ namespace ProiectOOp
                 n_tb.Text = "";
                 m_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_n_m();
+                return;
             }
 
 
@@ -656,9 +680,11 @@ namespace ProiectOOp
             {
                 n_tb.Text = "";
                 panel2.Controls.Clear();
+                panel3.Controls.Clear();
                 gen_k();
+                return;
             }
-
+            MessageBox.Show("Nu ati selectat nimic!");
         }
 
     }

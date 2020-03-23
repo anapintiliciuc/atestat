@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +77,7 @@
             this.panel1.Controls.Add(this.comboBoxChoice);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1571, 73);
+            this.panel1.Size = new System.Drawing.Size(1613, 73);
             this.panel1.TabIndex = 3;
             // 
             // labelAlegere
@@ -93,15 +94,15 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(12, 91);
+            this.panel2.Location = new System.Drawing.Point(12, 279);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1687, 906);
+            this.panel2.Size = new System.Drawing.Size(1613, 718);
             this.panel2.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(646, 203);
+            this.label2.Location = new System.Drawing.Point(642, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 13);
             this.label2.TabIndex = 1;
@@ -110,7 +111,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(60, 203);
+            this.label1.Location = new System.Drawing.Point(60, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 13);
             this.label1.TabIndex = 0;
@@ -119,17 +120,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1125, 203);
+            this.label3.Location = new System.Drawing.Point(1097, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(10, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = ".";
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(12, 91);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1613, 182);
+            this.panel3.TabIndex = 5;
             // 
             // FormMatrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1637, 930);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -154,6 +163,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
