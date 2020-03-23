@@ -25,9 +25,9 @@ namespace ProiectOOp
         TextBox[,] box1, box2;
         Label[,] labelsRez;
         Label labelPtRez;
-        private void gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde, TextBox[,] box)
+        private TextBox[,] gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
-            box = new TextBox[dim1+1, dim2+1];
+            TextBox[,] box = new TextBox[dim1+1, dim2+1];
             int loc1 = unde.X + 80;
             int loc2 = unde.Y;
             char lit = 'A';
@@ -51,6 +51,7 @@ namespace ProiectOOp
                     this.panel2.Controls.Add(box[i, j]);
                 }
             }
+            return box;
         }
 
         TextBox n_tb = new TextBox();
@@ -197,7 +198,7 @@ namespace ProiectOOp
                 return;
             }
 
-            gen_mat(n, n, 1, aici1, box1);
+            box1=gen_mat(n, n, 1, aici1);
 
             genButtonCalc();
             //gen_mat(n, n, 2);
@@ -261,8 +262,8 @@ namespace ProiectOOp
                 MessageBox.Show("m nu respecta limitele");
                 return;
             }
-            gen_mat(n, m, 1, aici1, box1);
-            gen_mat(n, m, 2, aici2, box2);
+            box1=gen_mat(n, m, 1, aici1);
+            box2=gen_mat(n, m, 2, aici2);
 
             genButtonCalc();
         }
@@ -302,7 +303,7 @@ namespace ProiectOOp
                 MessageBox.Show("m nu respecta limitele");
                 return;
             }
-            gen_mat(n, n, 1, aici1, box1);
+            box1=gen_mat(n, n, 1, aici1);
 
             genButtonCalc();
         }
@@ -361,8 +362,8 @@ namespace ProiectOOp
                 return;
             }
 
-            gen_mat(n, m, 1, aici1, box1);
-            gen_mat(m, p, 2, aici2, box2);
+            box1=gen_mat(n, m, 1, aici1);
+            box2=gen_mat(m, p, 2, aici2);
 
             genButtonCalc();
         }
@@ -497,7 +498,9 @@ namespace ProiectOOp
 
             if (comboBoxChoice.Text == "Transpusa unei matrice")
             {
-                iaN(n_tb);
+                Matrice a = new Matrice(box1, n, m);
+                Matrice rez = new Matrice(a.transpusa());
+                gen_boxDeRez(rez.mat, rez.n, rez.m, aici3);
             }
 
             if (comboBoxChoice.Text == "Rangul unei matrice")
