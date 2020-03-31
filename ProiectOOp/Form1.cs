@@ -22,9 +22,8 @@ namespace ProiectOOp
 
         }
 
+        #region Genereaza stuff
         TextBox[,] box1, box2;
-        Label[,] labelsRez;
-        Label labelPtRez;
         private TextBox[,] gen_mat(int dim1, int dim2, int nrDeOrdine, Point unde)
         {
             TextBox[,] box = new TextBox[dim1+1, dim2+1];
@@ -204,6 +203,10 @@ namespace ProiectOOp
             this.panel3.Controls.Add(btn);
             btn.Click += new EventHandler(this.btn_click);
         }
+
+#endregion
+
+        #region Dimensiuni 
 
         int n, m, p, k, putere, nrDeInmultit;
         int butGenereaza;
@@ -495,7 +498,12 @@ namespace ProiectOOp
 
             genButtonCalc();
         }
-        
+#endregion
+
+        #region Rezultat
+
+        Label[,] labelsRez;
+        Label labelPtRez;
 
         private void gen_boxDeRez(int[,] mat, int dim1, int dim2, Point unde)
         {
@@ -537,6 +545,10 @@ namespace ProiectOOp
             this.panel2.Controls.Add(labelPtRez);
         }
         Label rezultat;
+
+        #endregion 
+
+        #region OnClick Events
         private void btnCalc_click(object sender, EventArgs e)
         {
             //Point puneAici = box1[n-1, 1].Location;
@@ -858,6 +870,6 @@ namespace ProiectOOp
             }
             MessageBox.Show("Nu ati selectat nimic!");
         }
-
+        #endregion
     }
 }

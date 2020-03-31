@@ -91,14 +91,6 @@ namespace ProiectOOp
             return new Matrice(rez);
         }
 
-        //public static Matrice operator=(Matrice a, Matrice b)
-        //{
-        //    for (int i = 0; i < a.n; i++)
-        //        for (int j = 0; j < a.m; j++)
-        //            a.mat[i, j] = b.mat[i, j];
-        //    return new Matrice(a);
-        //}
-
         //inmultire
 
         public static Matrice operator*(int x, Matrice a)
@@ -202,28 +194,6 @@ namespace ProiectOOp
             return det(n, mat);               
         }
 
-        //factor comun din determinant
-
-        public int factorComunDeterminantLinie(int lin)
-        {
-            int factor = mat[lin, 0];
-
-            for (int i = 1; i < n; i++)
-                factor = cmmdc(factor, mat[lin, i]);
-
-            return factor;
-        }
-
-        public int factorComunDeterminantColoana(Matrice a, int col)
-        {
-            int factor = a.mat[0, col];
-
-            for (int i = 1; i < a.n; i++)
-                factor = cmmdc(factor, a.mat[i, col]);
-
-            return factor;
-        }
-
         //urma
         
         public int urmaMatrice()
@@ -306,44 +276,6 @@ namespace ProiectOOp
             m.mat[1, 1] = 0;
             m = new Matrice(m ^ put);
             return m.mat[0, 1];
-        }
-
-        //inversa
-
-        public Matrice inversa()
-        {
-            Matrice rez = new Matrice(n, m);
-            int d = 1;
-            int i, j, l;
-            for (i = 0; i < n; i++)
-                for (j = n; j < 2 * n; j++)
-                    if (i == (j - n))
-                        mat[i, j] = 1;
-                    else mat[i, j] = 0;
-            for (i = 0; i < n && d != 0; i++)
-            {
-                for (j = i; j < n && mat[j, i] == 0; j++) ;
-
-                if (j >= n)
-                    d = 0;
-                else if (j > i)
-                    for (l = 0; l < 2 * n; l++)
-                        mat[i, l] += mat[j, l];
-                if (mat[i, i] != 1)
-                    for (l = 2 * n - 1; l >= 0; l--)
-                        mat[i, l] /= mat[i, i];
-
-                for (j = 0; j < n; j++)
-                    if (j != i)
-                        for (l = 2 * n - 1; l >= i; l--)
-                            mat[j, l] -= mat[j, i] * mat[i, l];
-            }
-
-            for (i = 0; i < n; i++)
-                for (j = 0; j < n; j++)
-                    rez.mat[i, j] = mat[i, n + j-1];
-
-            return rez;
         }
 
     }
